@@ -1,0 +1,10 @@
+### 회원가입
+POST http://localhost:9000/member
+Content-Type: application/json
+
+{
+  "memberId": "user1234",
+  "password": "1234",
+  "name": "서명주",
+  "role": "USER"
+}

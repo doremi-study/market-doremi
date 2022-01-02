@@ -1,4 +1,4 @@
-package com.doremi.marketdoremi.common.security;
+package com.doremi.marketdoremi.common.config.security;
 
 import com.doremi.marketdoremi.domain.member.entity.Member;
 import lombok.Builder;

@@ -1,14 +1,13 @@
 package com.doremi.marketdoremi.service.member;
 
-import com.doremi.marketdoremi.common.security.MemberDetail;
-import com.doremi.marketdoremi.domain.member.Role;
+import com.doremi.marketdoremi.common.config.security.MemberDetail;
 import com.doremi.marketdoremi.domain.member.entity.Member;
 import com.doremi.marketdoremi.domain.member.repository.MemberRepository;
 import com.doremi.marketdoremi.web.dto.MemberDto;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,12 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
-@AllArgsConstructor
-public class MemberService implements UserDetailsService {
-    private MemberRepository memberRepository;
+@RequiredArgsConstructor
+public class MemberService {
+
+    private final MemberRepository memberRepository;
 
     @Transactional
     public String joinUser(MemberDto memberDto) {
@@ -35,16 +34,4 @@ public class MemberService implements UserDetailsService {
     }
 
 
-   @Override
-    public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
-        Member member = memberRepository.findByMemberId(memberId).orElseThrow(() -> new UsernameNotFoundException("아이디가 존재하지 않습니다."));
-        List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority(member.getRole().toString()));
-
-        return MemberDetail.builder()
-                .memberId(member.getMemberId())
-                .password(member.getPassword())
-                .authorities(roles)
-                .build();
-    }
 }

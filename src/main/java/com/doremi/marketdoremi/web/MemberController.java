@@ -19,18 +19,11 @@ public class MemberController {
 
     private final MemberService memberService;
 
-/*
-    @GetMapping("/signup")
-    public String signup() {
-        return "signup";
-    }
-*/
-
     @PostMapping("/member")
     public String signup(@RequestBody MemberDto requestDto) {
-        memberService.joinUser(requestDto);
+        String memberId = memberService.joinUser(requestDto);
         log.info("user created::" + requestDto.toString());
-        return "redirect:/";
+        return "redirect:/" + memberId;
     }
 }
 

@@ -17,8 +17,8 @@ public class Member implements Serializable {
     @EmbeddedId
     private MemberId memberId;
 
-    @Column(length = 500, nullable = false)
-    private String password;
+    @Embedded
+    private Password password;
 
     @Column(nullable = false)
     private String name;
@@ -32,10 +32,14 @@ public class Member implements Serializable {
         return this.memberId.getMemberId();
     }
 
+    public String passwordAsString() {
+        return this.password.getPassword();
+    }
+
     @Builder
     public Member(String memberId, String password, String name, Role role) { //builder의 parameter를 추리는 기준이 뭘까?
         this.memberId = new MemberId(memberId);
-        this.password = password;
+        this.password = new Password(password);
         this.name = name;
         this.role = role;
     }

@@ -1,4 +1,4 @@
-package com.doremi.marketdoremi.domain.member;
+package com.doremi.marketdoremi.domain.member.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;

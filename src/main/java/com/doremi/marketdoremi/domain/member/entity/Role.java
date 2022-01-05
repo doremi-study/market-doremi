@@ -1,4 +1,4 @@
-package com.doremi.marketdoremi.domain.member;
+package com.doremi.marketdoremi.domain.member.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

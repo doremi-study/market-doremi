@@ -1,10 +1,8 @@
 package com.doremi.marketdoremi.web.dto;
 
-import com.doremi.marketdoremi.domain.member.Role;
+import com.doremi.marketdoremi.domain.member.entity.Role;
 import com.doremi.marketdoremi.domain.member.entity.Member;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter

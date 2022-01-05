@@ -1,8 +1,7 @@
 package com.doremi.marketdoremi.common.security;
 
-import com.doremi.marketdoremi.domain.member.Role;
+import com.doremi.marketdoremi.domain.member.entity.Role;
 import com.doremi.marketdoremi.domain.member.entity.Member;
-import com.doremi.marketdoremi.domain.member.entity.MemberId;
 import com.doremi.marketdoremi.domain.member.repository.MemberRepository;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +17,6 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest

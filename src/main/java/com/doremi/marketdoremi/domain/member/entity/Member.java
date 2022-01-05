@@ -2,7 +2,6 @@ package com.doremi.marketdoremi.domain.member.entity;
 
 import java.io.Serializable;
 
-import com.doremi.marketdoremi.domain.member.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +25,19 @@ public class Member implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
-//    private Grade grade;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Grade grade;
+
+    @Builder//생성자 위에 빌더 추가
+    public Member(String memberId, String password, String name, Role role, Grade grade) {
+        this.memberId = new MemberId(memberId);
+        this.password = new Password(password);
+        this.name = name;
+        this.role = role;
+        this.grade = grade;
+    }
 
     public String memberIdAsString(){
         return this.memberId.getMemberId();
@@ -34,13 +45,5 @@ public class Member implements Serializable {
 
     public String passwordAsString() {
         return this.password.getPassword();
-    }
-
-    @Builder
-    public Member(String memberId, String password, String name, Role role) { //builder의 parameter를 추리는 기준이 뭘까?
-        this.memberId = new MemberId(memberId);
-        this.password = new Password(password);
-        this.name = name;
-        this.role = role;
     }
 }

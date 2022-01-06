@@ -31,12 +31,12 @@ public class Member implements Serializable {
     private Grade grade;
 
     @Builder//생성자 위에 빌더 추가
-    public Member(String memberId, String password, String name, Role role, Grade grade) {
+    public Member(String memberId, String password, String name, String role, String grade) {
         this.memberId = new MemberId(memberId);
         this.password = new Password(password);
         this.name = name;
-        this.role = role;
-        this.grade = grade;
+        this.role = Role.of(role);
+        this.grade = Grade.of(grade);
     }
 
     public String memberIdAsString(){

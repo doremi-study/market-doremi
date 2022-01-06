@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import com.doremi.marketdoremi.common.utils.StringValidator;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,9 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Embeddable
-public class MemberId implements Serializable {
+public class MemberId implements Serializable, Validatable{
+
+	private static final String MEMBER_ID_VALIDATION_MESSAGE = "6자 이상의 영문, 혹은 영문과 숫자 조합을 입력해주세요.";
 
 	@Column(name="member_id")
 	private String memberId;
@@ -25,19 +29,11 @@ public class MemberId implements Serializable {
 		this.memberId = memberId;
 	}
 
-	private void checkValidation(String memberId) {
+	@Override
+	public void checkValidation(String str) {
 		Optional.ofNullable(memberId)
-			.filter(v -> isAlpha(v) || isAlphaNumeric(v))
+			.filter(v -> StringValidator.isAlpha(v) || StringValidator.isAlphaNumeric(v))
 			.filter(v -> v.length() >= 6)
-			.orElseThrow(() -> new IllegalArgumentException("6자 이상의 영문, 혹은 영문과 숫자 조합을 입력해주세요."));
+			.orElseThrow(() -> new IllegalArgumentException(MEMBER_ID_VALIDATION_MESSAGE));
 	}
-
-	private boolean isAlpha(String str) {
-		return Pattern.matches("^[a-zA-Z]*$", str);
-	}
-
-	public boolean isAlphaNumeric(String str) {
-		return Pattern.matches("[a-zA-Z0-9]*$", str);
-	}
-
 }

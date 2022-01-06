@@ -30,6 +30,19 @@ public class Member implements Serializable {
     @OneToOne(mappedBy = "member", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private MemberInfo memberInfo;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Grade grade;
+
+    @Builder//생성자 위에 빌더 추가
+    public Member(String memberId, String password, String name, String role, String grade) {
+        this.memberId = new MemberId(memberId);
+        this.password = new Password(password);
+        // this.name = name;
+        // this.role = Role.of(role);
+        this.grade = Grade.of(grade);
+    }
+
     public String memberIdAsString(){
         return this.memberId.getMemberId();
     }

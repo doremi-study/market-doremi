@@ -39,6 +39,16 @@ public class Member implements Serializable {
         this.grade = Grade.of(grade);
     }
 
+    // @Builder
+    // public Member(MemberId memberId, Password password, String name, Role role,
+    //     Grade grade) {
+    //     this.memberId = memberId;
+    //     this.password = password;
+    //     this.name = name;
+    //     this.role = role;
+    //     this.grade = grade;
+    // }
+
     public String memberIdAsString(){
         return this.memberId.getMemberId();
     }

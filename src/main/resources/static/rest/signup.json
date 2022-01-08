@@ -1,0 +1,14 @@
+{
+  "memberId": "user123123",
+  "password": "123456",
+  "name": "유저1",
+  "role": "ROLE_USER",
+  "grade": "PURPLE",
+  "email": "juuxmee@gmail.com",
+  "phoneNumber": "01074520788",
+  "postNo": "06975",
+  "roadAddress": "서울시 영등포구 국제금융로 70",
+  "detailAddress": "미원빌딩 808호",
+  "gender": "female",
+  "birthday": "19921012"
+}

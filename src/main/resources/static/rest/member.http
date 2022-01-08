@@ -8,3 +8,18 @@ Content-Type: application/json
   "name": "서명주",
   "role": "USER"
 }
+
+### 회원가입
+POST http://localhost:9000/api/v1/member
+Content-Type: application/json
+
+< ./signup.json
+
+### 로그인
+GET http://localhost:9000/login
+Content-Type: application/json
+
+{
+  "memberId": "user123123",
+  "password": "123456"
+}

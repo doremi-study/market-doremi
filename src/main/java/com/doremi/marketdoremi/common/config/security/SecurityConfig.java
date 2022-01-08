@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -31,16 +32,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/member").permitAll()
+                .antMatchers(HttpMethod.POST, "/member", "/api/v1/member").permitAll()
                 .antMatchers("/login").permitAll()
                 // antMatchers().hasRole() : 특정 URI를 특정 role을 갖는 계정만 접근할 수 있음
                 //.antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
-            .and()
-                .formLogin()
-                .usernameParameter("memberId")
-                .passwordParameter("password")
-                .permitAll()
+            // .and()
+            //     .formLogin()
+            //     .loginProcessingUrl("/login")
+            //     .usernameParameter("memberId")
+            //     .passwordParameter("password")
+            //     .permitAll()
             .and()
                 .logout()
                 .deleteCookies("JSESSIONID")
@@ -63,5 +65,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         // 스프링 부트가 제공하는 static 리소스들의 기본위치를 다 가져와서 스프링 시큐리티에서 제외
         web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }

@@ -12,7 +12,7 @@ public class MemberDto {
     private String memberId;
     private String password;
     private String name;
-    private Role role;
+    private String role;
 
     public Member toEntity(){
         return Member.builder()
@@ -24,7 +24,7 @@ public class MemberDto {
     }
 
     @Builder
-    public MemberDto(String memberId, String password, String name, Role role) {
+    public MemberDto(String memberId, String password, String name, String role) {
         this.memberId = memberId;
         this.password = password;
         this.name = name;

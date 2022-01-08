@@ -9,11 +9,15 @@ public class StringValidator {
 	}
 
 	public static boolean isAlpha(String str) {
-		return Pattern.matches("^[a-zA-Z]*$", str);
+		return Pattern.matches("^[a-z]*$", str);
+	}
+
+	public static boolean isNumeric(String str) {
+		return Pattern.matches("^[0-9]*$", str);
 	}
 
 	public static boolean isAlphaNumeric(String str) {
-		return Pattern.matches("[a-zA-Z0-9]*$", str);
+		return Pattern.matches("[a-z0-9]*$", str);
 	}
 
 	public static boolean isValidPassword(String str) {

@@ -31,8 +31,8 @@ public class MemberId implements Serializable, Validatable{
 
 	@Override
 	public void checkValidation(String str) {
-		Optional.ofNullable(memberId)
-			.filter(v -> StringValidator.isAlpha(v) || StringValidator.isAlphaNumeric(v))
+		Optional.ofNullable(str)
+			.filter(v -> (StringValidator.isAlpha(v)) ||  (!StringValidator.isNumeric(v) && StringValidator.isAlphaNumeric(v)))
 			.filter(v -> v.length() >= 6)
 			.orElseThrow(() -> new IllegalArgumentException(MEMBER_ID_VALIDATION_MESSAGE));
 	}

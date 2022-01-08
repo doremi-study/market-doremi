@@ -27,7 +27,7 @@ public class MemberRepositoryTest {
                 .memberId("admin")
                 .name("어드민")
                 .password(new BCryptPasswordEncoder().encode("admin"))
-//                .role(Role.ADMIN)
+                .role("USER")
                 .build());
     }
 

@@ -1,6 +1,7 @@
 package com.doremi.marketdoremi.web;
 
 import com.doremi.marketdoremi.common.config.security.CustomUserDetailsService;
+import com.doremi.marketdoremi.common.config.security.MemberDetail;
 import com.doremi.marketdoremi.service.member.MemberService;
 import com.doremi.marketdoremi.web.dto.MemberDto;
 import com.doremi.marketdoremi.web.dto.MemberRequest;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,13 +41,13 @@ public class MemberController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity<String> login(@RequestBody MemberDto memberDto) {
+    public ResponseEntity<MemberDetail> login(@RequestBody MemberDto memberDto) {
         try {
-            String login = memberService.login(memberDto);
-            return ResponseEntity.ok(login);
+            MemberDetail member = memberService.login(memberDto);
+            return new ResponseEntity<>(member, HttpStatus.OK);
         } catch (Exception e) {
             log.info(e.getMessage());
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.notFound().build();
         }
     }
 

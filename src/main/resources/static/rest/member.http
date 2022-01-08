@@ -49,6 +49,6 @@ GET http://localhost:9000/login
 Content-Type: application/json
 
 {
-  "memberId": "user123123",
+  "memberId": "user1231234",
   "password": "123456"
 }

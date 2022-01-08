@@ -65,13 +65,12 @@ public class MemberService {
 	}
 
 	@Transactional
-	public String login(MemberDto request) throws Exception {
+	public MemberDetail login(MemberDto request) throws Exception {
 		Authentication authentication = authenticationManager.authenticate(
 			new UsernamePasswordAuthenticationToken(request.getMemberId(), request.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		MemberDetail principal = (MemberDetail) authentication.getPrincipal();
-		return principal.getUsername();
+		return (MemberDetail) authentication.getPrincipal();
 	}
 }

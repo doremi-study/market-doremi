@@ -18,8 +18,4 @@ public class Password {
 	public Password(String password) {
 		this.password = password;
 	}
-
-	/*public String encode(String password) {
-		return encoder.encode(password);
-	}*/
 }

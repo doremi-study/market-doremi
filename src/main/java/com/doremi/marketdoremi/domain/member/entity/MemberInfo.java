@@ -33,7 +33,7 @@ public class MemberInfo {
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(name = "sex", nullable = true)
     private Sex sex;
 

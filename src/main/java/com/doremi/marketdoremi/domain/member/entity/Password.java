@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter @NoArgsConstructor
 public class Password {
 
-	@Column(name="password")
+	@Column(name="password", nullable = false)
 	private String password;
 
 	public Password(String password) {

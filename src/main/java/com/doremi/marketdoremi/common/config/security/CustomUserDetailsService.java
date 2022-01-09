@@ -2,7 +2,7 @@ package com.doremi.marketdoremi.common.config.security;
 
 import com.doremi.marketdoremi.domain.member.entity.Member;
 import com.doremi.marketdoremi.domain.member.entity.MemberId;
-import com.doremi.marketdoremi.domain.member.entity.MemberRole;
+import com.doremi.marketdoremi.domain.member.entity.MemberAuthority;
 import com.doremi.marketdoremi.domain.member.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -28,8 +28,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 		Member member = memberRepository.findById(new MemberId(memberId))
 			            				.orElseThrow(() -> new UsernameNotFoundException("아이디가 존재하지 않습니다."));
 		List<GrantedAuthority> roles = new ArrayList<>();
-		for (MemberRole memberRole : member.getMemberRoles()) {
-			roles.add(new SimpleGrantedAuthority(memberRole.getRole().getName().toString()));
+		for (MemberAuthority memberAuthority : member.getMemberAuthorities()) {
+			roles.add(new SimpleGrantedAuthority(memberAuthority.getAuthority().getName().toString()));
 		}
 
 		return MemberDetail.builder()

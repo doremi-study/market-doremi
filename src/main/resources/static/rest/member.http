@@ -7,13 +7,13 @@ Content-Type: application/json
     "memberId": "user1",
     "password": "1234"
   },
-  "roles": [{"role": "USER"}],
+  "roles": ["USER"],
   "memberInfo": {
     "name": "도레미",
     "email": "doremi@doremi-market.com",
     "phoneNumber": "01012341234",
     "address": "서울특별시 영등포구 여의대로 108",
-    "sex": "",
+    "sex": "FEMALE",
     "birthday": "1990-03-26"
   }
 }

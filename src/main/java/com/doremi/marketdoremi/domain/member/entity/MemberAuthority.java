@@ -9,9 +9,9 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor @AllArgsConstructor @Builder
-@Table(name = "member_role")
+@Table(name = "member_authority")
 @Entity
-public class MemberRole {
+public class MemberAuthority {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idx")
@@ -22,11 +22,11 @@ public class MemberRole {
     private Member member;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "role_name", nullable = false, insertable = true)
-    private Role role;
+    @JoinColumn(name = "authority_name", nullable = false, insertable = true)
+    private Authority authority;
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
     }
 
     public void setMember(Member member) {

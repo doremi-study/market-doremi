@@ -3,8 +3,37 @@ POST http://localhost:9000/member
 Content-Type: application/json
 
 {
-  "memberId": "user1234",
-  "password": "1234",
-  "name": "서명주",
-  "role": "USER"
+  "member": {
+    "memberId": "user1",
+    "password": "1234"
+  },
+  "roles": [{"role": "USER"}],
+  "memberInfo": {
+    "name": "도레미",
+    "email": "doremi@doremi-market.com",
+    "phoneNumber": "01012341234",
+    "address": "서울특별시 영등포구 여의대로 108",
+    "sex": "",
+    "birthday": "1990-03-26"
+  }
+}
+
+### 회원가입
+POST http://localhost:9000/member
+Content-Type: application/json
+
+{
+  "member": {
+    "memberId": "admin1",
+    "password": "1234"
+  },
+  "roles": ["ADMIN", "USER"],
+  "memberInfo": {
+    "name": "관리자",
+    "email": "doremi@doremi-market.com",
+    "phoneNumber": "01012341234",
+    "address": "서울특별시 영등포구 여의대로 108",
+    "sex": "NONE",
+    "birthday": "1990-03-26"
+  }
 }

@@ -13,7 +13,7 @@ Content-Type: application/json
     "email": "doremi@doremi-market.com",
     "phoneNumber": "01012341234",
     "address": "서울특별시 영등포구 여의대로 108",
-    "sex": "FEMALE",
+    "gender": "female",
     "birthday": "1990-03-26"
   }
 }

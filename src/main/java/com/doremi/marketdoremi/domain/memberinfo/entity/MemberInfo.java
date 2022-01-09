@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
@@ -24,6 +25,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor @AllArgsConstructor
 @Entity
 public class MemberInfo {
+
+	@OneToOne(cascade = CascadeType.PERSIST)
+	//@JoinColumn(name = "member_id")
+	private Member member;
 
 	@EmbeddedId
 	private MemberId memberId;
@@ -47,10 +52,6 @@ public class MemberInfo {
 	@Column(name = "birthday", nullable = false)
 	private MemberAddress address;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "member_id")
-	private Member member;
-
 	@Builder
 	public MemberInfo(String memberId, String name, String email, String phoneNumber,
 		String gender, LocalDate birthday, String postNo, String roadAddress, String detailAddress) {
@@ -64,6 +65,7 @@ public class MemberInfo {
 	}
 
 	public void setMember(Member member) {
+		this.memberId = member.getMemberId();
 		this.member = member;
 	}
 }

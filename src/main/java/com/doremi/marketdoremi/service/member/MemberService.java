@@ -46,7 +46,7 @@ public class MemberService {
         memberDto.setPassword(encoder.encode(memberDto.getPassword()));
 
         Member member = memberDto.toEntity();
-        MemberInfo memberInfo = memberInfoDto.toEntity();
+		MemberInfo memberInfo = memberInfoDto.toEntity();
 
         for (Role role : memberData.getRoles()) {
             //  TODO role이 존재하는지 조회했는데
@@ -70,10 +70,10 @@ public class MemberService {
 	@Transactional
 	public String joinMember(MemberRequest memberRequest) {
 		Member member = memberRequest.toEntityMember();
-		//MemberInfo memberInfo = memberRequest.toEntityMemberInfo();
+		MemberInfo memberInfo = memberRequest.toEntityMember().getMemberInfo();
 
 		memberRepository.save(member);
-		//memberInfoRepository.save(memberInfo);
+		memberInfoRepository.save(memberInfo);
 		return member.memberIdAsString();
 	}
 

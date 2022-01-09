@@ -38,12 +38,13 @@ public class Member implements Serializable {
     private Grade grade;
 
     @Builder//생성자 위에 빌더 추가
-    public Member(String memberId, String password, String name, String role, String grade) {
+    public Member(String memberId, String password, String name, String role, String grade, MemberInfo memberInfo) {
         this.memberId = new MemberId(memberId);
         this.password = new Password(password);
         // this.name = name;
         // this.role = Role.of(role);
         this.grade = Grade.of(grade);
+        this.memberInfo = memberInfo;
     }
 
     // @Builder

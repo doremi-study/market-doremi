@@ -29,16 +29,18 @@ public class MemberRequest {
 	private LocalDate birthday;
 
 	public Member toEntityMember() {
+
 		return Member.builder()
 			.memberId(memberId)
 			.password(PasswordEncryptor.encrypt(password))
 			.name(name)
 			.role(role)
 			.grade(grade)
+			.memberInfo(this.toEntityMemberInfo())
 			.build();
 	}
 
-	public MemberInfo toEntityMemberInfo() {
+	private MemberInfo toEntityMemberInfo() {
 		return MemberInfo.builder()
 			.memberId(memberId)
 			.email(email)

@@ -8,7 +8,7 @@ import com.doremi.marketdoremi.domain.member.entity.MemberAuthority;
 import com.doremi.marketdoremi.domain.member.repository.MemberInfoRepository;
 import com.doremi.marketdoremi.domain.member.repository.MemberRepository;
 import com.doremi.marketdoremi.domain.member.repository.MemberRoleRepository;
-import com.doremi.marketdoremi.domain.member.repository.RoleRepository;
+import com.doremi.marketdoremi.domain.member.repository.AuthorityRepository;
 import com.doremi.marketdoremi.web.dto.MemberDataDto;
 
 import com.doremi.marketdoremi.web.dto.MemberDto;
@@ -26,7 +26,7 @@ public class MemberService {
     private final PasswordEncoder encoder;
     private final MemberInfoRepository memberInfoRepository;
     private final MemberRoleRepository memberRoleRepository;
-    private final RoleRepository roleRepository;
+    private final AuthorityRepository roleRepository;
 
     @Transactional
     public String joinUser(MemberDataDto memberData) {

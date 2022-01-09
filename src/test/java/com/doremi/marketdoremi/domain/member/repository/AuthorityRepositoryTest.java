@@ -14,7 +14,7 @@ import org.springframework.test.annotation.Rollback;
 class AuthorityRepositoryTest {
 
     @Autowired
-    private RoleRepository roleRepository;
+    private AuthorityRepository roleRepository;
 
     @Test
     @Rollback(value = false)

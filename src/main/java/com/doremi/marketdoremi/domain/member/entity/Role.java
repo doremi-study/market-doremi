@@ -20,5 +20,5 @@ public class Role {
     private com.doremi.marketdoremi.domain.member.Role name;
 
     @OneToMany(mappedBy = "role")
-    private List<MemberRole> memberRoles;
+    private List<MemberAuthority> memberRoles;
 }

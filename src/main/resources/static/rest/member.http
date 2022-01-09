@@ -52,3 +52,18 @@ Content-Type: application/json
   "memberId": "user1231234",
   "password": "123456"
 }
+
+### 회원가입
+POST http://localhost:9000/api/v1/member
+Content-Type: application/json
+
+< ./signup.json
+
+### 로그인
+GET http://localhost:9000/login
+Content-Type: application/json
+
+{
+  "memberId": "user1231234",
+  "password": "123456"
+}

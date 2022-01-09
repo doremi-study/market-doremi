@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Embeddable
 public class Email {
 
-	@Column
+	@Column(name = "email", nullable = false)
 	private String email;
 
 	public Email(String email) {

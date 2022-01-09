@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.doremi.marketdoremi.domain.member.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import com.doremi.marketdoremi.domain.authority.entity.Authority;
+import com.doremi.marketdoremi.domain.memberauthority.entity.MemberAuthority;
+import com.doremi.marketdoremi.domain.memberinfo.entity.MemberInfo;
 
 @Getter
 @NoArgsConstructor

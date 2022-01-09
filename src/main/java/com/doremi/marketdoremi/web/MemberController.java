@@ -4,6 +4,9 @@ import com.doremi.marketdoremi.common.config.security.CustomUserDetailsService;
 import com.doremi.marketdoremi.common.config.security.MemberDetail;
 import com.doremi.marketdoremi.service.member.MemberService;
 import com.doremi.marketdoremi.web.dto.MemberDataDto;
+import com.doremi.marketdoremi.web.dto.MemberDto;
+import com.doremi.marketdoremi.web.dto.MemberRequest;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

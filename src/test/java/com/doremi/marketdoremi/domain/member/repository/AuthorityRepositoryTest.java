@@ -1,6 +1,7 @@
 package com.doremi.marketdoremi.domain.member.repository;
 
-import com.doremi.marketdoremi.domain.member.entity.Authority;
+import com.doremi.marketdoremi.domain.authority.repository.AuthorityRepository;
+import com.doremi.marketdoremi.domain.authority.entity.Authority;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

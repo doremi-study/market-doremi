@@ -1,7 +1,20 @@
 package com.doremi.marketdoremi.service.member;
 
+import com.doremi.marketdoremi.common.config.security.MemberDetail;
+import com.doremi.marketdoremi.domain.authority.entity.Authority;
+import com.doremi.marketdoremi.domain.member.entity.Member;
+import com.doremi.marketdoremi.domain.memberauthority.entity.MemberAuthority;
+import com.doremi.marketdoremi.domain.member.entity.Role;
+import com.doremi.marketdoremi.domain.authority.repository.AuthorityRepository;
 import com.doremi.marketdoremi.domain.member.repository.MemberRepository;
+import com.doremi.marketdoremi.domain.memberauthority.repository.MemberAuthorityRepository;
+import com.doremi.marketdoremi.domain.memberinfo.entity.MemberInfo;
+import com.doremi.marketdoremi.domain.memberinfo.repository.MemberInfoRepository;
+import com.doremi.marketdoremi.web.dto.MemberDataDto;
 import com.doremi.marketdoremi.web.dto.MemberDto;
+import com.doremi.marketdoremi.web.dto.MemberInfoDto;
+import com.doremi.marketdoremi.web.dto.MemberRequest;
+
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,11 +31,11 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 	private final MemberInfoRepository memberInfoRepository;
-    private final PasswordEncoder encoder;
+    private final MemberAuthorityRepository memberAuthorityRepository;
+    private final AuthorityRepository authorityRepository;
+
+	private final PasswordEncoder encoder;
 	private final AuthenticationManager authenticationManager;
-    private final MemberInfoRepository memberInfoRepository;
-    private final MemberRoleRepository memberRoleRepository;
-    private final AuthorityRepository roleRepository;
 
     @Transactional
     public String joinUser(MemberDataDto memberData) {
@@ -37,7 +50,7 @@ public class MemberService {
 
         for (Role role : memberData.getRoles()) {
             //  TODO role이 존재하는지 조회했는데
-            Authority searchAuthority = roleRepository.findById(role).get();
+            Authority searchAuthority = authorityRepository.findById(role).get();
 
             MemberAuthority memberAuthority = MemberAuthority.builder()
                     .member(member)
@@ -47,7 +60,7 @@ public class MemberService {
 
             member.addMemberAuthority(memberAuthority);
             //    TODO 이상적으로는 memberRepository.save(member)하고싶은데... memberRole이랑 memberInfo랑 하게됨. 안그러면 null들어감..ㅠ
-            memberRoleRepository.save(memberAuthority);
+            memberAuthorityRepository.save(memberAuthority);
         }
         memberInfo.setMember(member);
         memberInfoRepository.save(memberInfo);
@@ -57,10 +70,10 @@ public class MemberService {
 	@Transactional
 	public String joinMember(MemberRequest memberRequest) {
 		Member member = memberRequest.toEntityMember();
-		MemberInfo memberInfo = memberRequest.toEntityMemberInfo();
+		//MemberInfo memberInfo = memberRequest.toEntityMemberInfo();
 
 		memberRepository.save(member);
-		memberInfoRepository.save(memberInfo);
+		//memberInfoRepository.save(memberInfo);
 		return member.memberIdAsString();
 	}
 

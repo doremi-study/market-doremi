@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import java.util.List;
 
+import com.doremi.marketdoremi.domain.member.entity.Role;
+
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class MemberDataDto {
 
@@ -14,5 +16,5 @@ public class MemberDataDto {
 
     private MemberInfoDto memberInfo;
 
-    private List<com.doremi.marketdoremi.domain.member.Role> roles;
+    private List<Role> roles;
 }

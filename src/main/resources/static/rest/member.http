@@ -4,8 +4,8 @@ Content-Type: application/json
 
 {
   "member": {
-    "memberId": "user2",
-    "password": "1234"
+    "memberId": "user1234",
+    "password": "12341234"
   },
   "roles": ["USER"],
   "memberInfo": {

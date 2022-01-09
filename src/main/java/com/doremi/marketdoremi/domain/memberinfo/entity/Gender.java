@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum Gender {
 	FEMALE("female"), MALE("male"), UNCHECKED("unchecked");
 
-	private String key;
+	private final String key;
 
 	Gender(String key) {
 		this.key = key;

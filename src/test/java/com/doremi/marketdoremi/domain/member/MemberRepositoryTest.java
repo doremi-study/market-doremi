@@ -1,6 +1,7 @@
 package com.doremi.marketdoremi.domain.member;
 
 import com.doremi.marketdoremi.domain.member.entity.Member;
+import com.doremi.marketdoremi.domain.member.entity.Role;
 import com.doremi.marketdoremi.domain.member.repository.MemberRepository;
 
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ public class MemberRepositoryTest {
                 .memberId("admin")
                 .name("어드민")
                 .password(new BCryptPasswordEncoder().encode("admin"))
-//                .role(Role.ADMIN)
+                .role("USER")
                 .build());
     }
 

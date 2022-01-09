@@ -1,39 +1,49 @@
 package com.doremi.marketdoremi.web.dto;
 
-import com.doremi.marketdoremi.domain.member.entity.MemberInfo;
-import com.doremi.marketdoremi.web.Sex;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.doremi.marketdoremi.domain.memberinfo.entity.Gender;
+import com.doremi.marketdoremi.domain.memberinfo.entity.MemberInfo;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-@Getter @Setter @Builder
+@Getter
+@Setter
+@Builder
 public class MemberInfoDto {
 
-    private String name;
+	private String name;
 
-    private String email;
+	private String email;
 
-    private String phoneNumber;
+	private String phoneNumber;
 
-    private String address;
+	private String postNo;
 
-    private Sex sex;
+	private String roadAddress;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate birthday;
+	private String detailAddress;
 
-    public MemberInfo toEntity() {
-        return MemberInfo.builder()
-                .name(name)
-                .email(email)
-                .phoneNumber(phoneNumber)
-                .address(address)
-                .sex(sex)
-                .birthday(birthday)
-                .build();
-    }
+	private String gender;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate birthday;
+
+	public MemberInfo toEntity() {
+
+		return MemberInfo.builder()
+			.name(name)
+			.email(email)
+			.phoneNumber(phoneNumber)
+			.postNo(postNo)
+			.roadAddress(roadAddress)
+			.detailAddress(detailAddress)
+			.gender(gender)
+			.birthday(birthday)
+			.build();
+	}
 }

@@ -1,6 +1,9 @@
 package com.doremi.marketdoremi.domain.member.repository;
 
-import com.doremi.marketdoremi.domain.member.entity.Authority;
+import com.doremi.marketdoremi.domain.authority.repository.AuthorityRepository;
+import com.doremi.marketdoremi.domain.authority.entity.Authority;
+import com.doremi.marketdoremi.domain.member.entity.Role;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -20,11 +23,11 @@ class AuthorityRepositoryTest {
     @Rollback(value = false)
     void 권한_생성() {
         Authority admin = Authority.builder()
-                .name(com.doremi.marketdoremi.domain.member.Role.ADMIN)
+                .name(Role.ADMIN)
                 .build();
         roleRepository.save(admin);
         Authority user = Authority.builder()
-                .name(com.doremi.marketdoremi.domain.member.Role.USER)
+                .name(Role.USER)
                 .build();
         roleRepository.save(user);
     }

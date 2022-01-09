@@ -1,4 +1,4 @@
-package com.doremi.marketdoremi.domain.member.entity;
+package com.doremi.marketdoremi.domain.memberauthority.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import com.doremi.marketdoremi.domain.authority.entity.Authority;
+import com.doremi.marketdoremi.domain.member.entity.Member;
 
 @Getter
 @NoArgsConstructor @AllArgsConstructor @Builder

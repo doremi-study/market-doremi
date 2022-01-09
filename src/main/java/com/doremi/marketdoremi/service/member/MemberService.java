@@ -1,7 +1,18 @@
 package com.doremi.marketdoremi.service.member;
 
+import com.doremi.marketdoremi.domain.member.Role;
+import com.doremi.marketdoremi.domain.member.entity.Authority;
+import com.doremi.marketdoremi.domain.member.entity.Member;
+import com.doremi.marketdoremi.domain.member.entity.MemberInfo;
+import com.doremi.marketdoremi.domain.member.entity.MemberAuthority;
+import com.doremi.marketdoremi.domain.member.repository.MemberInfoRepository;
 import com.doremi.marketdoremi.domain.member.repository.MemberRepository;
+import com.doremi.marketdoremi.domain.member.repository.MemberRoleRepository;
+import com.doremi.marketdoremi.domain.member.repository.AuthorityRepository;
+import com.doremi.marketdoremi.web.dto.MemberDataDto;
+
 import com.doremi.marketdoremi.web.dto.MemberDto;
+import com.doremi.marketdoremi.web.dto.MemberInfoDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,12 +24,38 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder encoder;
+    private final MemberInfoRepository memberInfoRepository;
+    private final MemberRoleRepository memberRoleRepository;
+    private final AuthorityRepository roleRepository;
 
     @Transactional
-    public String joinUser(MemberDto memberDto) {
+    public String joinUser(MemberDataDto memberData) {
+        MemberDto memberDto = memberData.getMember();
+        MemberInfoDto memberInfoDto = memberData.getMemberInfo();
+
         // 비밀번호 암호화
         memberDto.setPassword(encoder.encode(memberDto.getPassword()));
-        return memberRepository.save(memberDto.toEntity()).memberIdAsString();
+
+        Member member = memberDto.toEntity();
+        MemberInfo memberInfo = memberInfoDto.toEntity();
+
+        for (Role role : memberData.getRoles()) {
+            //  TODO role이 존재하는지 조회했는데
+            Authority searchAuthority = roleRepository.findById(role).get();
+
+            MemberAuthority memberAuthority = MemberAuthority.builder()
+                    .member(member)
+                    .authority(searchAuthority)
+                    .build();
+            memberAuthority.setMember(member);
+
+            member.addMemberAuthority(memberAuthority);
+            //    TODO 이상적으로는 memberRepository.save(member)하고싶은데... memberRole이랑 memberInfo랑 하게됨. 안그러면 null들어감..ㅠ
+            memberRoleRepository.save(memberAuthority);
+        }
+        memberInfo.setMember(member);
+        memberInfoRepository.save(memberInfo);
+        return null;
     }
 
 

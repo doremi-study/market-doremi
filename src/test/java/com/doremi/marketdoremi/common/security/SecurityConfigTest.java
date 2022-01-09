@@ -45,7 +45,7 @@ public class SecurityConfigTest {
                 .memberId("admin")
                 .password(passwordEncoder.encode("admin"))
                 .name("어드민")
-                .role(Role.ADMIN)
+//                .role(Role.ADMIN)
                 .build();
         memberRepository.save(member);
     }

@@ -7,12 +7,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@EqualsAndHashCode
-@Getter
 @Embeddable
+@EqualsAndHashCode
+@Getter @NoArgsConstructor
 public class Password {
-	@Column(name="password")
+
+	@Column(name="password", nullable = false)
 	private String password;
 
 	public Password(String password) {

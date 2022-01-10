@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.doremi.marketdoremi.domain.authority.entity.Authority;
+import com.doremi.marketdoremi.domain.memberauthority.entity.MemberAuthority;
+import com.doremi.marketdoremi.domain.memberinfo.entity.MemberInfo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,11 +29,11 @@ public class Member implements Serializable {
     @Embedded
     private Password password;
 
-    @OneToMany(mappedBy = "member", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "member", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<MemberAuthority> memberAuthorities;
 
     //  @OneToOne에 mappedBy뺐더니 Member에 member_info_idx 컬럼 생기더라
-    @OneToOne(mappedBy = "member", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "member", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private MemberInfo memberInfo;
 
     @Enumerated(EnumType.STRING)
@@ -63,6 +66,10 @@ public class Member implements Serializable {
 
     public String passwordAsString() {
         return this.password.getPassword();
+    }
+
+    public void addMemberInfo(MemberInfo memberInfo) {
+        this.memberInfo = memberInfo;
     }
 
     public void addMemberAuthority(MemberAuthority memberAuthority) {

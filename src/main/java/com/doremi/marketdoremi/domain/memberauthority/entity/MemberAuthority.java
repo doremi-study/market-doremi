@@ -1,5 +1,7 @@
 package com.doremi.marketdoremi.domain.memberauthority.entity;
 
+import com.doremi.marketdoremi.domain.authority.entity.Authority;
+import com.doremi.marketdoremi.domain.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,11 +22,11 @@ public class MemberAuthority {
     @Column(name = "idx")
     private Long idx;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "member_id", nullable = false, insertable = true)
     private Member member;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "authority_name", nullable = false, insertable = true)
     private Authority authority;
 

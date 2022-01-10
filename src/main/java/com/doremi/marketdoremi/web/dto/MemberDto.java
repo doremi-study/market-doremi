@@ -1,9 +1,6 @@
 package com.doremi.marketdoremi.web.dto;
 
-
 import com.doremi.marketdoremi.domain.member.entity.Member;
-import com.doremi.marketdoremi.domain.memberinfo.entity.MemberInfo;
-
 import lombok.*;
 
 @Getter @Setter @ToString

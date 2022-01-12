@@ -7,10 +7,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.doremi.marketdoremi.domain.benefit.entity.Benefit;
-import com.doremi.marketdoremi.domain.member.entity.Grade;
+import com.doremi.marketdoremi.web.Grade;
 
 @Table(name = "grade")
-@Entity
+//@Entity
 public class MemberGrade {
 
 	@Id

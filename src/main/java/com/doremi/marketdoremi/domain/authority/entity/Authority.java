@@ -10,9 +10,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
-import com.doremi.marketdoremi.domain.member.entity.Role;
-import com.doremi.marketdoremi.domain.memberauthority.entity.MemberAuthority;
-
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Builder
 @Table(name = "authority")
@@ -24,6 +21,6 @@ public class Authority {
     @Column(name = "name")
     private Role name;
 
-    @OneToMany(mappedBy = "authority")// TODO 여기 mappedBy가 굳이 필요한지?
+    @OneToMany(mappedBy = "authority")
     private List<MemberAuthority> memberAuthorities;
 }

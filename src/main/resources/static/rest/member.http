@@ -12,8 +12,10 @@ Content-Type: application/json
     "name": "미도레",
     "email": "doremi@doremi-market.com",
     "phoneNumber": "01012341234",
-    "address": "서울특별시 영등포구 여의대로 108",
-    "gender": "female",
+    "postNo": "1234",
+    "roadAddress": "서울특별시 영등포구 여의대로 108",
+    "detailAddress": "더현대",
+    "gender": "FEMALE",
     "birthday": "1990-03-26"
   }
 }
@@ -32,8 +34,10 @@ Content-Type: application/json
     "name": "관리자",
     "email": "doremi@doremi-market.com",
     "phoneNumber": "01012341234",
-    "address": "서울특별시 영등포구 여의대로 108",
-    "sex": "NONE",
+    "postNo": "1234",
+    "roadAddress": "서울특별시 영등포구 여의대로 108",
+    "detailAddress": "더현대",
+    "gender": "UNCHECKED",
     "birthday": "1990-03-26"
   }
 }

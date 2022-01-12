@@ -8,8 +8,6 @@ import lombok.Setter;
 
 import java.util.List;
 
-import com.doremi.marketdoremi.domain.member.entity.Role;
-
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class MemberDataDto {
 

@@ -1,6 +1,7 @@
 package com.doremi.marketdoremi.domain.memberinfo.entity;
 
 import com.doremi.marketdoremi.domain.member.entity.Member;
+import com.doremi.marketdoremi.domain.member.entity.MemberId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -10,7 +11,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Builder @AllArgsConstructor @NoArgsConstructor
-@EqualsAndHashCode
 @Table(name = "member_info")
 @Entity
 public class MemberInfo {

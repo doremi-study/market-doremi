@@ -24,9 +24,9 @@ public class MemberRepositoryTest {
     public void 회원정보추가() {
         memberRepository.save(Member.builder()
                 .memberId("admin")
-                .name("어드민")
+//                .name("어드민")
                 .password(new BCryptPasswordEncoder().encode("admin"))
-                .role("USER")
+//                .role("USER")
                 .build());
     }
 

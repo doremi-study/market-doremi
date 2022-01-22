@@ -4,37 +4,38 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.doremi.marketdoremi.domain.authority.entity.Authority;
 import com.doremi.marketdoremi.domain.memberauthority.entity.MemberAuthority;
 import com.doremi.marketdoremi.domain.memberinfo.entity.MemberInfo;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Getter
-@NoArgsConstructor
+@Getter @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)//부모 속성 사용 안하고, include라고 명시된것만 포함
 @Table(name = "member", uniqueConstraints = @UniqueConstraint(columnNames = {"member_id"}))
 @Entity
 public class Member implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @EqualsAndHashCode.Include
     private Long id;
 
-    @Column(name =" member_id", nullable = false)
-    private String memberId;
+    @EqualsAndHashCode.Include//Entity는 식별할 수 있는 값으로 동등성을 확인해야 한다.
+    private MemberId memberId;
 
     @Embedded
+    @Column(name = "password", nullable = false)
     private Password password;
 
     @OneToMany(mappedBy = "member"
             , cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<MemberAuthority> memberAuthorities;
 
-    @OneToOne(mappedBy = "member"
-            , cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @JoinColumn()
     private MemberInfo memberInfo;
 
     /*@Enumerated(EnumType.STRING)
@@ -43,7 +44,7 @@ public class Member implements Serializable {
 
     @Builder//생성자 위에 빌더 추가
     public Member(String memberId, String password, String grade, MemberInfo memberInfo) {
-        this.memberId = memberId;
+        this.memberId = new MemberId(memberId);
         this.password = new Password(password);
 //        this.grade = Grade.of(grade);
         this.memberInfo = memberInfo;
@@ -62,7 +63,7 @@ public class Member implements Serializable {
     /**
      * memberInfo 값 매핑
      */
-    public void addMemberInfo(MemberInfo memberInfo) {
+    public void setMemberInfo(MemberInfo memberInfo) {
         memberInfo.addMember(this);
         this.memberInfo = memberInfo;
     }

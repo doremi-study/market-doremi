@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Getter
-@NoArgsConstructor @AllArgsConstructor @Builder
+@NoArgsConstructor @AllArgsConstructor
 @Table(name = "member_authority")
 @Entity
 public class MemberAuthority {
@@ -26,4 +26,9 @@ public class MemberAuthority {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "authority_name", nullable = false)
     private Authority authority;
+
+    public MemberAuthority(Member member, Authority authority) {
+        this.member = member;
+        this.authority = authority;
+    }
 }

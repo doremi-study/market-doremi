@@ -31,25 +31,22 @@ public class MemberService {
     @Transactional
     public String joinUser(MemberDto memberDto, MemberInfoDto memberInfoDto, List<Role> roles) {
         // 비밀번호 암호화
-        memberDto.setPassword(encoder.encode(memberDto.getPassword()));
+        memberDto.encodePassword(encoder);
 
         Member member = memberDto.toEntity();
         MemberInfo memberInfo = memberInfoDto.toEntity();
 
-        member.addMemberInfo(memberInfo);
+        member.setMemberInfo(memberInfo);
 
         for (Role role : roles) {
             Authority searchAuthority = roleRepository.findById(role).get();
 
-            MemberAuthority memberAuthority = MemberAuthority.builder()
-                    .member(member)
-                    .authority(searchAuthority)
-                    .build();
+            MemberAuthority memberAuthority = new MemberAuthority(member, searchAuthority);
 
             member.addMemberAuthority(memberAuthority);
         }
         memberRepository.save(member);
-        return member.getMemberId();
+        return member.getMemberId().getMemberId();
     }
 
     @Transactional
@@ -59,6 +56,6 @@ public class MemberService {
 
         memberRepository.save(member);
         memberInfoRepository.save(memberInfo);
-        return member.getMemberId();
+        return member.getMemberId().getMemberId();
     }
 }

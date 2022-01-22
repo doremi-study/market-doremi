@@ -21,7 +21,7 @@ public class MemberId implements Serializable, Validatable{
 
 	private static final String MEMBER_ID_VALIDATION_MESSAGE = "6자 이상의 영문, 혹은 영문과 숫자 조합을 입력해주세요.";
 
-	@Column(name="member_id")
+	@Column(name="member_id", nullable = false)
 	private String memberId;
 
 	public MemberId(String memberId) {

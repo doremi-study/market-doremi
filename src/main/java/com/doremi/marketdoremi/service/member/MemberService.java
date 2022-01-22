@@ -29,7 +29,7 @@ public class MemberService {
     private final AuthorityRepository roleRepository;
 
     @Transactional
-    public String joinUser(MemberDto memberDto, MemberInfoDto memberInfoDto, List<Role> roles) {
+    public String joinUser(MemberDto memberDto, MemberInfoDto memberInfoDto, List<Role> roles) throws Exception {
         // 비밀번호 암호화
         memberDto.encodePassword(encoder);
 
@@ -39,7 +39,8 @@ public class MemberService {
         member.setMemberInfo(memberInfo);
 
         for (Role role : roles) {
-            Authority searchAuthority = roleRepository.findById(role).get();
+            Authority searchAuthority = roleRepository.findById(role)
+                    .orElseThrow(() -> new Exception("없는 권한입니다."));
 
             MemberAuthority memberAuthority = new MemberAuthority(member, searchAuthority);
 

@@ -26,7 +26,7 @@ Content-Type: application/json
 
 {
   "member": {
-    "memberId": "admintest",
+    "memberId": "admin1234",
     "password": "admin1234"
   },
   "roles": ["ADMIN", "USER"],

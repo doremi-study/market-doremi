@@ -1,7 +1,9 @@
 package com.doremi.marketdoremi.web;
 
+import com.doremi.marketdoremi.service.product.ProductService;
 import com.doremi.marketdoremi.web.dto.ProductDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,13 +12,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/product")
 public class ProductController {
 
+    @Autowired
+    private ProductService productService;
+
     /**
      * 상품 생성
      * @return
      */
     @PostMapping(value = "item")
-    public ResponseEntity<String> registItem(@RequestBody ProductDto product) {
-        log.info("product ::: {}", product);
+    public ResponseEntity<String> registItem(@RequestBody ProductDto product) throws Exception {
+        productService.saveItem(product);
         return ResponseEntity.ok("");
     }
 

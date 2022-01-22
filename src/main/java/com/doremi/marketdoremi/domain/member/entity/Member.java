@@ -35,7 +35,6 @@ public class Member implements Serializable {
     private List<MemberAuthority> memberAuthorities;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
-    @JoinColumn()
     private MemberInfo memberInfo;
 
     /*@Enumerated(EnumType.STRING)

@@ -24,3 +24,9 @@ spring:
   devtools:
     livereload:
       enabled: on
+logging:
+  level:
+    root: info
+    org.springframework: debug
+    org.hibernate.type: trace
+    org.springframework.security: info

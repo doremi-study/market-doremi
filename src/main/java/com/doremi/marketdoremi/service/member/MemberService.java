@@ -7,7 +7,7 @@ import com.doremi.marketdoremi.domain.member.repository.MemberRepository;
 import com.doremi.marketdoremi.domain.memberauthority.entity.MemberAuthority;
 import com.doremi.marketdoremi.domain.memberinfo.entity.MemberInfo;
 import com.doremi.marketdoremi.domain.memberinfo.repository.MemberInfoRepository;
-import com.doremi.marketdoremi.web.Role;
+import com.doremi.marketdoremi.codes.Role;
 import com.doremi.marketdoremi.web.dto.MemberDto;
 import com.doremi.marketdoremi.web.dto.MemberInfoDto;
 import com.doremi.marketdoremi.web.dto.MemberRequest;

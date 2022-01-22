@@ -1,6 +1,6 @@
 package com.doremi.marketdoremi.domain.member.repository;
 
-import com.doremi.marketdoremi.web.Role;
+import com.doremi.marketdoremi.codes.Role;
 import com.doremi.marketdoremi.domain.authority.entity.Authority;
 import com.doremi.marketdoremi.domain.authority.repository.AuthorityRepository;
 import org.junit.jupiter.api.Test;

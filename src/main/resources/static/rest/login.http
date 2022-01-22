@@ -1,8 +1,23 @@
-### 회원가입
+### 로그인 페이지
 GET http://localhost:9000/login
+
+### 로그인
+POST http://localhost:9000/login
 Content-Type: application/json
 
 {
-  "memberId": "user1",
-  "password": "1234"
+  "memberId": "admintest",
+  "password": "admin1234"
 }
+
+### 로그인
+POST http://localhost:9000/login
+Content-Type: application/json
+
+{
+  "memberId": "user1231234",
+  "password": "123456"
+}
+
+### 로그아웃
+GET http://localhost:9000/logout

@@ -1,4 +1,4 @@
-package com.doremi.marketdoremi.domain.member.entity;
+package com.doremi.marketdoremi.web;
 
 import java.util.Arrays;
 

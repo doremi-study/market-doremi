@@ -1,5 +1,7 @@
 package com.doremi.marketdoremi.domain.memberauthority.entity;
 
+import com.doremi.marketdoremi.domain.authority.entity.Authority;
+import com.doremi.marketdoremi.domain.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,32 +9,26 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-import com.doremi.marketdoremi.domain.authority.entity.Authority;
-import com.doremi.marketdoremi.domain.member.entity.Member;
-
 @Getter
-@NoArgsConstructor @AllArgsConstructor @Builder
+@NoArgsConstructor @AllArgsConstructor
 @Table(name = "member_authority")
 @Entity
 public class MemberAuthority {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idx")
-    private Long idx;
+    @Column(name = "id")
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "member_id", nullable = false, insertable = true)
+    @ManyToOne
+    @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "authority_name", nullable = false, insertable = true)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "authority_name", nullable = false)
     private Authority authority;
 
-    public void setAuthority(Authority authority) {
-        this.authority = authority;
-    }
-
-    public void setMember(Member member) {
+    public MemberAuthority(Member member, Authority authority) {
         this.member = member;
+        this.authority = authority;
     }
 }

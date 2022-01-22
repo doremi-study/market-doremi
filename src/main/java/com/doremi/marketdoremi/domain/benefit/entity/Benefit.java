@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 
 import com.doremi.marketdoremi.domain.grade.entity.MemberGrade;
 
-@Entity
+//@Entity
 public class Benefit {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)

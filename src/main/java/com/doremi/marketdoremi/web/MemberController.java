@@ -1,19 +1,11 @@
 package com.doremi.marketdoremi.web;
 
-import com.doremi.marketdoremi.common.config.security.CustomUserDetailsService;
-import com.doremi.marketdoremi.common.config.security.MemberDetail;
 import com.doremi.marketdoremi.service.member.MemberService;
 import com.doremi.marketdoremi.web.dto.MemberDataDto;
-import com.doremi.marketdoremi.web.dto.MemberDto;
 import com.doremi.marketdoremi.web.dto.MemberRequest;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,11 +18,10 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/member")
-    public String signup(@RequestBody MemberDataDto memberData) {
-
-        String memberId = memberService.joinUser(memberData);
+    public ResponseEntity<String> signup(@RequestBody MemberDataDto memberData) {
+        String memberId = memberService.joinUser(memberData.getMember(), memberData.getMemberInfo(), memberData.getRoles());
         log.info("user created::" + memberData.getMember().toString());
-        return "redirect:/" + memberId;
+        return ResponseEntity.ok(memberId);
     }
 
     @PostMapping("/api/v1/member")
@@ -39,7 +30,10 @@ public class MemberController {
         return ResponseEntity.ok(memberId);
     }
 
-    @GetMapping("/login")
+    /*
+    * memberService.login 이거 삭제했는데 너무 거침없이 삭제했니..
+    * */
+    /*@GetMapping("/login")
     public ResponseEntity<MemberDetail> login(@RequestBody MemberDto memberDto) {
         try {
             MemberDetail member = memberService.login(memberDto);
@@ -48,7 +42,7 @@ public class MemberController {
             log.info(e.getMessage());
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
 
 }
 

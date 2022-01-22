@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Embeddable
 public class MemberAddress {
+
 	@Column
 	private String postNo;
 

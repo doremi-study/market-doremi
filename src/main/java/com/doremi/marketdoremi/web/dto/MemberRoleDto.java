@@ -9,11 +9,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
-public class MemberDataDto {
+public class MemberRoleDto {
 
-    private MemberDto member;
-
-    private MemberInfoDto memberInfo;
-
-    private List<Role> roles;
+    private List<Role> role;
 }

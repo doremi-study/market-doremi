@@ -2,6 +2,9 @@ package com.doremi.marketdoremi.web.dto;
 
 import java.time.LocalDate;
 
+import com.doremi.marketdoremi.domain.memberinfo.entity.Email;
+import com.doremi.marketdoremi.domain.memberinfo.entity.Gender;
+import com.doremi.marketdoremi.domain.memberinfo.entity.MemberAddress;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.doremi.marketdoremi.common.utils.PasswordEncryptor;
@@ -24,7 +27,7 @@ public class MemberRequest {
 	private String postNo;
 	private String roadAddress;
 	private String detailAddress;
-	private String gender;
+	private Gender gender;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthday;
 
@@ -33,8 +36,6 @@ public class MemberRequest {
 		return Member.builder()
 			.memberId(memberId)
 			.password(PasswordEncryptor.encrypt(password))
-			.name(name)
-			.role(role)
 			.grade(grade)
 			.memberInfo(this.toEntityMemberInfo())
 			.build();
@@ -42,14 +43,16 @@ public class MemberRequest {
 
 	private MemberInfo toEntityMemberInfo() {
 		return MemberInfo.builder()
-			.memberId(memberId)
-			.email(email)
-			.phoneNumber(phoneNumber)
-			.postNo(postNo)
-			.roadAddress(roadAddress)
-			.detailAddress(detailAddress)
-			.gender(gender)
-			.birthday(birthday)
-			.build();
+//			.memberId(memberId)
+				.email(Email.builder().email(email).build())
+				.phoneNumber(phoneNumber)
+				.address(MemberAddress.builder()
+						.postNo(postNo)
+						.roadAddress(roadAddress)
+						.detailAddress(detailAddress)
+						.build())
+				.gender(gender)
+				.birthday(birthday)
+				.build();
 	}
 }

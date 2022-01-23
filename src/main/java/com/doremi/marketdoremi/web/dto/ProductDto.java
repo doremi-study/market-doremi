@@ -26,15 +26,12 @@ public class ProductDto {
     private String allergyInfo;//알레르기정보
     private ItemPackagingType packagingType;//포장박스
     private ItemTemperatureType temperatureType;//포장온도
-    private List<DeliveryType> deliveryType;//배송구분
+    private boolean quickDelivery;//샛별배송여부
+
     //TODO 상세정보 이미지 파일
     private ItemStatus status;
 
     public ProductItem toEntity() throws Exception {
-
-        String deliveryTypes = deliveryType.stream()
-                .map(type -> type.name())
-                .collect(Collectors.joining(","));
 
         return ProductItem.builder()
                 .upperLevel(upperLevel)
@@ -48,15 +45,11 @@ public class ProductDto {
                 .allergyInfo(allergyInfo)
                 .packagingType(packagingType)
                 .temperatureType(temperatureType)
-                .deliveryType(deliveryTypes)
+                .quickDelivery(quickDelivery)
                 .build();
     }
 
     public ProductItem toEntityWithId() throws Exception {
-
-        String deliveryTypes = deliveryType.stream()
-                .map(type -> type.name())
-                .collect(Collectors.joining(","));
 
         return ProductItem.builder()
                 .id(id)
@@ -71,7 +64,7 @@ public class ProductDto {
                 .allergyInfo(allergyInfo)
                 .packagingType(packagingType)
                 .temperatureType(temperatureType)
-                .deliveryType(deliveryTypes)
+                .quickDelivery(quickDelivery)
                 .status(status)
                 .build();
     }

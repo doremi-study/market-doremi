@@ -1,44 +1,45 @@
 package com.doremi.marketdoremi.service.product;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.doremi.marketdoremi.codes.ItemStatus;
 import com.doremi.marketdoremi.common.error.exceptions.DoremiRuntimeException;
 import com.doremi.marketdoremi.domain.productitem.entity.ProductItem;
 import com.doremi.marketdoremi.domain.productitem.repository.ProductItemRepository;
 import com.doremi.marketdoremi.web.dto.ProductDto;
 import com.doremi.marketdoremi.web.dto.ProductItemDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Service
 public class ProductService {
 
-    @Autowired
-    private ProductItemRepository productItemRepository;
+    private final ProductItemRepository productItemRepository;
 
     public void saveItem(ProductDto product) throws Exception {
         ProductItem productItem = product.toEntity();
         productItem.setStatus(ItemStatus.READY);
-
         productItemRepository.save(productItem);
     }
 
-    public void updateItem(ProductDto product) throws Exception {
-        ProductItem productItem = product.toEntityWithId();
-
-        ProductItem originProductItem = productItemRepository.findById(product.getId())
-                .orElseThrow(() -> new DoremiRuntimeException("수정하려는 상품과 일치하는 상품이 존재하지 않습니다."));
-
+    public void updateItem(ProductDto productDto) throws Exception {
+        isExistProductByProductId(productDto.getId());
+        ProductItem productItem = productDto.toEntityWithId();
         productItemRepository.save(productItem);
     }
 
-    public void updateStatus(ProductDto product) throws Exception {
-        ProductItem originProductItem = productItemRepository.findById(product.getId())
-                .orElseThrow(() -> new DoremiRuntimeException("수정하려는 상품과 일치하는 상품이 존재하지 않습니다."));
-        originProductItem.setStatus(product.getStatus());
+    public void updateStatus(ProductDto productDto) throws Exception {
+        ProductItem productItem = toEntityProductItem(productDto);
+        productItemRepository.save(productItem);
+    }
 
-        productItemRepository.save(originProductItem);
+    private ProductItem toEntityProductItem(ProductDto productDto) {
+        ProductItem productItem = findByProductId(productDto.getId());
+        productItem.setStatus(productDto.getStatus());
+        return productItem;
     }
 
     public List<ProductItem> selectItems(ProductItemDto productItem) {
@@ -46,7 +47,16 @@ public class ProductService {
     }
 
     public ProductItem selectItem(ProductItemDto productItem) throws Exception {
-        return (ProductItem) productItemRepository.findOneByIdAndUpperLevelAndLowerLevelOrderByIdDesc(productItem.getId(), productItem.getUpperLevel(), productItem.getLowerLevel())
+        return productItemRepository.findOneByIdAndUpperLevelAndLowerLevelOrderByIdDesc(productItem.getId(), productItem.getUpperLevel(), productItem.getLowerLevel())
                 .orElseThrow(() -> new DoremiRuntimeException("해당하는 상품이 존재하지 않습니다."));
+    }
+
+    private ProductItem findByProductId(Long productId) {
+        return productItemRepository.findById(productId)
+                                .orElseThrow(() -> new DoremiRuntimeException("수정하려는 상품과 일치하는 상품이 존재하지 않습니다."));
+    }
+
+    private void isExistProductByProductId(Long productId) {
+        findByProductId(productId);
     }
 }

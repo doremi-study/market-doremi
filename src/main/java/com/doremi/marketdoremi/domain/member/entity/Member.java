@@ -35,6 +35,7 @@ public class Member implements Serializable {
     private List<MemberAuthority> memberAuthorities;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_info_id", nullable = false)
     private MemberInfo memberInfo;
 
     /*@Enumerated(EnumType.STRING)
@@ -63,7 +64,6 @@ public class Member implements Serializable {
      * memberInfo 값 매핑
      */
     public void setMemberInfo(MemberInfo memberInfo) {
-        memberInfo.addMember(this);
         this.memberInfo = memberInfo;
     }
 

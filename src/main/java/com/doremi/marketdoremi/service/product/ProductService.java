@@ -1,6 +1,7 @@
 package com.doremi.marketdoremi.service.product;
 
 import com.doremi.marketdoremi.codes.ItemStatus;
+import com.doremi.marketdoremi.common.error.exceptions.DoremiRuntimeException;
 import com.doremi.marketdoremi.domain.productitem.entity.ProductItem;
 import com.doremi.marketdoremi.domain.productitem.repository.ProductItemRepository;
 import com.doremi.marketdoremi.web.dto.ProductDto;
@@ -27,14 +28,14 @@ public class ProductService {
         ProductItem productItem = product.toEntityWithId();
 
         ProductItem originProductItem = productItemRepository.findById(product.getId())
-                .orElseThrow(() -> new Exception("수정하려는 상품과 일치하는 상품이 존재하지 않습니다."));
+                .orElseThrow(() -> new DoremiRuntimeException("수정하려는 상품과 일치하는 상품이 존재하지 않습니다."));
 
         productItemRepository.save(productItem);
     }
 
     public void updateStatus(ProductDto product) throws Exception {
         ProductItem originProductItem = productItemRepository.findById(product.getId())
-                .orElseThrow(() -> new Exception("수정하려는 상품과 일치하는 상품이 존재하지 않습니다."));
+                .orElseThrow(() -> new DoremiRuntimeException("수정하려는 상품과 일치하는 상품이 존재하지 않습니다."));
         originProductItem.setStatus(product.getStatus());
 
         productItemRepository.save(originProductItem);
@@ -46,6 +47,6 @@ public class ProductService {
 
     public ProductItem selectItem(ProductItemDto productItem) throws Exception {
         return (ProductItem) productItemRepository.findOneByIdAndUpperLevelAndLowerLevelOrderByIdDesc(productItem.getId(), productItem.getUpperLevel(), productItem.getLowerLevel())
-                .orElseThrow(() -> new Exception("해당하는 상품이 존재하지 않습니다."));
+                .orElseThrow(() -> new DoremiRuntimeException("해당하는 상품이 존재하지 않습니다."));
     }
 }

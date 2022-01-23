@@ -41,7 +41,7 @@ PUT http://localhost:9000/api/product/admin/item
 Content-Type: application/json
 
 {
-  "id": 4,
+  "id": 10,
   "upperLevel": "U001",
   "lowerLevel": "L001",
   "name": "[오뗄블랙라벨]제주돼지로 만든 비엔나 소시지 250g",

@@ -1,5 +1,6 @@
 package com.doremi.marketdoremi.service.member;
 
+import com.doremi.marketdoremi.common.error.exceptions.DoremiRuntimeException;
 import com.doremi.marketdoremi.domain.authority.entity.Authority;
 import com.doremi.marketdoremi.domain.authority.repository.AuthorityRepository;
 import com.doremi.marketdoremi.domain.member.entity.Member;
@@ -40,7 +41,7 @@ public class MemberService {
 
         for (Role role : roles) {
             Authority searchAuthority = roleRepository.findById(role)
-                    .orElseThrow(() -> new Exception("없는 권한입니다."));
+                    .orElseThrow(() -> new DoremiRuntimeException("없는 권한입니다."));
 
             MemberAuthority memberAuthority = new MemberAuthority(member, searchAuthority);
 

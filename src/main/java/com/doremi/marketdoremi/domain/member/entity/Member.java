@@ -67,6 +67,10 @@ public class Member implements Serializable {
         this.memberInfo = memberInfo;
     }
 
+    public String memberIdAsString() {
+        return this.memberId.getMemberId();
+    }
+
     public String passwordAsString() {
         return this.password.getPassword();
     }

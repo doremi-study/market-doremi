@@ -44,7 +44,7 @@ public class ProductItem {
     @Enumerated(EnumType.STRING)
     private ItemPackagingType packagingType;
 
-    private String deliveryType;
+    private boolean quickDelivery;
 
     //TODO 상세정보 이미지 파일
 

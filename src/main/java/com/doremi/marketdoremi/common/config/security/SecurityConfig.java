@@ -33,16 +33,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/member", "/api/v1/member").permitAll()
+                .antMatchers("/api/product/**").permitAll()
                 .antMatchers("/login").permitAll()
                 // antMatchers().hasRole() : 특정 URI를 특정 role을 갖는 계정만 접근할 수 있음
                 //.antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
-            // .and()
-            //     .formLogin()
-            //     .loginProcessingUrl("/login")
-            //     .usernameParameter("memberId")
-            //     .passwordParameter("password")
-            //     .permitAll()
+             .and()
+                 .formLogin()
+                 .usernameParameter("memberId")
+                 .permitAll()
             .and()
                 .logout()
                 .deleteCookies("JSESSIONID")
@@ -67,8 +66,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
-    @Bean
+    /*@Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
-    }
+    }*/
 }

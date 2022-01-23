@@ -19,9 +19,8 @@ public class MemberInfo {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id", nullable = false)
-    private Member member;
+    /*@OneToOne(fetch = FetchType.LAZY)
+    private Member member;*/
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -54,7 +53,7 @@ public class MemberInfo {
 		this.address = new MemberAddress(postNo, roadAddress, detailAddress);
 	}
 
-    public void addMember(Member member) {
+    /*public void addMember(Member member) {
         this.member = member;
-    }
+    }*/
 }

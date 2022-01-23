@@ -20,7 +20,4 @@ public class Authority {
     @Id
     @Column(name = "name")
     private Role name;
-
-    @OneToMany(mappedBy = "authority")
-    private List<MemberAuthority> memberAuthorities;
 }

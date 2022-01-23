@@ -23,7 +23,7 @@ public class MemberAuthority {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "authority_name", nullable = false)
     private Authority authority;
 

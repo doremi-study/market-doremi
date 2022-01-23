@@ -18,7 +18,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/member")
-    public ResponseEntity<String> signup(@RequestBody MemberDataDto memberData) {
+    public ResponseEntity<String> signup(@RequestBody MemberDataDto memberData) throws Exception {
         String memberId = memberService.joinUser(memberData.getMember(), memberData.getMemberInfo(), memberData.getRoles());
         log.info("user created::" + memberData.getMember().toString());
         return ResponseEntity.ok(memberId);

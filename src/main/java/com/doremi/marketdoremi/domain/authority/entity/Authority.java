@@ -1,6 +1,6 @@
 package com.doremi.marketdoremi.domain.authority.entity;
 
-import com.doremi.marketdoremi.web.Role;
+import com.doremi.marketdoremi.codes.Role;
 import com.doremi.marketdoremi.domain.memberauthority.entity.MemberAuthority;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

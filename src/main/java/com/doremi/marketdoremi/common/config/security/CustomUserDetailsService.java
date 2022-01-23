@@ -2,8 +2,8 @@ package com.doremi.marketdoremi.common.config.security;
 
 import com.doremi.marketdoremi.domain.member.entity.Member;
 import com.doremi.marketdoremi.domain.member.entity.MemberId;
-import com.doremi.marketdoremi.domain.memberauthority.entity.MemberAuthority;
 import com.doremi.marketdoremi.domain.member.repository.MemberRepository;
+import com.doremi.marketdoremi.domain.memberauthority.entity.MemberAuthority;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

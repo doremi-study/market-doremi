@@ -1,6 +1,6 @@
 package com.doremi.marketdoremi.web.dto;
 
-import com.doremi.marketdoremi.web.Role;
+import com.doremi.marketdoremi.codes.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

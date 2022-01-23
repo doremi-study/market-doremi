@@ -1,4 +1,4 @@
-package com.doremi.marketdoremi.web;
+package com.doremi.marketdoremi.codes;
 
 import java.util.Arrays;
 

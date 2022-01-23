@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 public class ProductItem {
 
-    //  TODO 상품코드가 따로 있어야할 것 같은데. 변하지않는 상품코드(유효성체크 가능)
+    //  TODO 상품코드가 따로 있어야할 것 같은데.
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -50,4 +50,8 @@ public class ProductItem {
 
     @Enumerated(EnumType.STRING)
     private ItemStatus status;
+
+    public void setStatus(ItemStatus status) {
+        this.status = status;
+    }
 }

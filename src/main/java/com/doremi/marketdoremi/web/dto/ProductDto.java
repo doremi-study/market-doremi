@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @Getter @Setter
 public class ProductDto {
 
+    private Long id;
     private ItemUpperLevel upperLevel;//상위 분류코드
     private ItemLowerLevel lowerLevel;//하위 분류코드
     private String name;//상품명
@@ -48,6 +49,30 @@ public class ProductDto {
                 .packagingType(packagingType)
                 .temperatureType(temperatureType)
                 .deliveryType(deliveryTypes)
+                .build();
+    }
+
+    public ProductItem toEntityWithId() throws Exception {
+
+        String deliveryTypes = deliveryType.stream()
+                .map(type -> type.name())
+                .collect(Collectors.joining(","));
+
+        return ProductItem.builder()
+                .id(id)
+                .upperLevel(upperLevel)
+                .lowerLevel(lowerLevel)
+                .name(name)
+                .description(description)
+                .price(price)
+                .unit(unit)
+                .volume(volume)
+                .origin(origin)
+                .allergyInfo(allergyInfo)
+                .packagingType(packagingType)
+                .temperatureType(temperatureType)
+                .deliveryType(deliveryTypes)
+                .status(status)
                 .build();
     }
 }

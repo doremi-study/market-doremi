@@ -19,9 +19,6 @@ public class MemberInfo {
     @Column(name = "id")
     private Long id;
 
-    /*@OneToOne(fetch = FetchType.LAZY)
-    private Member member;*/
-
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -52,8 +49,4 @@ public class MemberInfo {
 		this.birthday = birthday;
 		this.address = new MemberAddress(postNo, roadAddress, detailAddress);
 	}
-
-    /*public void addMember(Member member) {
-        this.member = member;
-    }*/
 }

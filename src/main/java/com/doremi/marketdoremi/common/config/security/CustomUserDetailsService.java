@@ -31,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		}
 
 		return MemberDetail.builder()
-			.memberId(member.getMemberId().getMemberId())
+			.memberId(member.memberIdAsString())
 			.password(member.passwordAsString())
 			.authorities(roles)
 			.build();

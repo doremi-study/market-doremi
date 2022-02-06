@@ -13,11 +13,4 @@ public class MemberDto {
     public void encodePassword(PasswordEncoder encoder) {
         this.password = encoder.encode(password);
     }
-
-    public Member toEntity(){
-        return Member.builder()
-                .memberId(memberId)
-                .password(password)
-                .build();
-    }
 }

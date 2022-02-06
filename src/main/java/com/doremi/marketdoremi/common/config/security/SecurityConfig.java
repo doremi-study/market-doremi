@@ -14,9 +14,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Configuration
-@EnableWebSecurity
 @RequiredArgsConstructor
+@Configuration
+@EnableWebSecurity(debug = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomUserDetailsService userDetailsService;
@@ -32,9 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/member", "/api/v1/member").permitAll()
+                .antMatchers(HttpMethod.GET,"/login").permitAll()
+                .antMatchers(HttpMethod.POST,"/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/member").permitAll()
                 .antMatchers("/api/product/**").permitAll()
-                .antMatchers("/login").permitAll()
                 // antMatchers().hasRole() : 특정 URI를 특정 role을 갖는 계정만 접근할 수 있음
                 //.antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()

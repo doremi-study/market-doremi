@@ -30,19 +30,4 @@ public class MemberInfoDto {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
-
-    public MemberInfo toEntity() {
-        return MemberInfo.builder()
-                .name(name)
-                .email(Email.builder().email(email).build())
-                .phoneNumber(phoneNumber)
-                .address(MemberAddress.builder()
-                        .postNo(postNo)
-                        .roadAddress(roadAddress)
-                        .detailAddress(detailAddress)
-                        .build())
-                .gender(gender)
-                .birthday(birthday)
-                .build();
-    }
 }

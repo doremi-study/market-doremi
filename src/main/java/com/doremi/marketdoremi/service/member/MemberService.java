@@ -9,15 +9,12 @@ import com.doremi.marketdoremi.domain.memberauthority.entity.MemberAuthority;
 import com.doremi.marketdoremi.domain.memberinfo.entity.MemberInfo;
 import com.doremi.marketdoremi.domain.memberinfo.repository.MemberInfoRepository;
 import com.doremi.marketdoremi.codes.Role;
-import com.doremi.marketdoremi.web.dto.MemberDto;
-import com.doremi.marketdoremi.web.dto.MemberInfoDto;
+import com.doremi.marketdoremi.web.dto.MemberDataDto;
 import com.doremi.marketdoremi.web.dto.MemberRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -30,16 +27,13 @@ public class MemberService {
     private final AuthorityRepository roleRepository;
 
     @Transactional
-    public String joinUser(MemberDto memberDto, MemberInfoDto memberInfoDto, List<Role> roles) throws Exception {
-        // 비밀번호 암호화
-        memberDto.encodePassword(encoder);
-
-        Member member = memberDto.toEntity();
-        MemberInfo memberInfo = memberInfoDto.toEntity();
+    public String joinMember(MemberDataDto memberData) throws Exception {
+        Member member = memberData.toMemberEntity(encoder);
+        MemberInfo memberInfo = memberData.toMemberInfoEntity();
 
         member.setMemberInfo(memberInfo);
 
-        for (Role role : roles) {
+        for (Role role : memberData.getRoles()) {
             Authority searchAuthority = roleRepository.findById(role)
                     .orElseThrow(() -> new DoremiRuntimeException("없는 권한입니다."));
 
@@ -48,16 +42,6 @@ public class MemberService {
             member.addMemberAuthority(memberAuthority);
         }
         memberRepository.save(member);
-        return member.getMemberId().getMemberId();
-    }
-
-    @Transactional
-    public String joinMember(MemberRequest memberRequest) {
-        Member member = memberRequest.toEntityMember();
-        MemberInfo memberInfo = memberRequest.toEntityMember().getMemberInfo();
-
-        memberRepository.save(member);
-        memberInfoRepository.save(memberInfo);
         return member.getMemberId().getMemberId();
     }
 }

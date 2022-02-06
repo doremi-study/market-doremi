@@ -23,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
-		Member member = memberRepository.findById(new MemberId(memberId))
+		Member member = memberRepository.findByMemberId(new MemberId(memberId))
 			                        .orElseThrow(() -> new UsernameNotFoundException("아이디가 존재하지 않습니다."));
 		List<GrantedAuthority> roles = new ArrayList<>();
 		for (MemberAuthority memberAuthority : member.getMemberAuthorities()) {

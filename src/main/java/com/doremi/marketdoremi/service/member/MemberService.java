@@ -1,5 +1,6 @@
 package com.doremi.marketdoremi.service.member;
 
+import com.doremi.marketdoremi.codes.Role;
 import com.doremi.marketdoremi.common.error.exceptions.DoremiRuntimeException;
 import com.doremi.marketdoremi.domain.authority.entity.Authority;
 import com.doremi.marketdoremi.domain.authority.repository.AuthorityRepository;
@@ -8,9 +9,7 @@ import com.doremi.marketdoremi.domain.member.repository.MemberRepository;
 import com.doremi.marketdoremi.domain.memberauthority.entity.MemberAuthority;
 import com.doremi.marketdoremi.domain.memberinfo.entity.MemberInfo;
 import com.doremi.marketdoremi.domain.memberinfo.repository.MemberInfoRepository;
-import com.doremi.marketdoremi.codes.Role;
 import com.doremi.marketdoremi.web.dto.MemberDataDto;
-import com.doremi.marketdoremi.web.dto.MemberRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
